@@ -17,8 +17,6 @@ After that, to start the game simply open Index.html with your browser of choice
 ### Global variables
 * Array __allCards__: all possible cards with their pairs.
 * Array __shuffledCards__: all possible cards with their pairs after it shuffled.
-* Date __shuffledCards__: get the starting time by start loading the JS file.
-
 
 ### Javascript Functions
 __these functions will be found in js/app.js__
@@ -29,9 +27,6 @@ this function print the cards to the html after allCards array been shuffled.
 * __incorrectAnimation(Object card)__
 this function change the css class of the card to show incorrect choice animation.
 this function wrote with jQuery synax.
-
-* __timeDifference()__
-the purpose of this function to take the diffrence from the start to end of the game. it convert the time from milliseconds to minutes and seconds format.
 
 * __startGame()__
 this function is where the rules are coded. this function has 5 variables need to be listed.
