@@ -2,13 +2,17 @@
 
 ## Disclaimer
 The project design is downloaded from Udacity front-end course.
-This repo has made changes to the code to be inractive and responsive which is the purpose of this course.
+This repo has changes made to the code for interaction and responsiveness which is the purpose of this lesseon.
 
 ## Requirments
 * jQuery required to be mentioned in the HTML or in JavaScript's file if you will use it in Node.js
 * the project may not support lagacy browsers.
 
-## Coding the Game
+## Getting Started
+You can download the game by clone the repo or download it as zip file by clicking on green button "Clone or Download".
+After that, to start the game simply open Index.html with your browser of choice.
+
+## Development
 
 ### Global variables
 * Array __allCards__: all possible cards with their pairs.

@@ -90,6 +90,9 @@ h1 {
   font-size: 33px;
   transition: all 0.2s ease;
 }
+.disabled {
+  pointer-events: none;
+}
 
 /*
  * Styles for the Score Panel

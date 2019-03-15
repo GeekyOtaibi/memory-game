@@ -1,24 +1,23 @@
-const allCards = [
-  "fa-diamond",
+const symbols = [
   "fa-diamond",
   "fa-paper-plane-o",
-  "fa-paper-plane-o",
-  "fa-anchor",
   "fa-anchor",
   "fa-bolt",
-  "fa-bolt",
-  "fa-cube",
   "fa-cube",
   "fa-leaf",
-  "fa-leaf",
   "fa-bicycle",
-  "fa-bicycle",
-  "fa-bomb",
   "fa-bomb"
 ];
+const allCards = symbols.concat(symbols);
 let shuffledCards;
-const startTime = new Date();
+
 printShuffledCards(); //* printShuffledCards() will be excuted once the JS file loaded
+
+var timer = new easytimer.Timer();
+timer.start();
+timer.addEventListener("secondsUpdated", function(e) {
+  $(".timer-content").html(timer.getTimeValues().toString());
+});
 
 function shuffle(array) {
   var currentIndex = array.length,
@@ -59,19 +58,6 @@ function incorrectAnimation(card) {
     });
 }
 
-function timeDifference() {
-  /*
-   * second = milliseconds / 1000
-   * minute = milliseconds / (60 * 1000)
-   */
-  let endTime = new Date();
-  let minuteDiff = Math.floor((endTime - startTime) / (60 * 1000));
-  let secondDiff = Math.floor(
-    (minuteDiff * 60 * 1000 - (endTime - startTime)) / 1000
-  );
-  return `${minuteDiff} Minutes ${Math.abs(secondDiff)} Seconds`;
-}
-
 function startGame() {
   let holder, selectedCard;
   let movesCount = 0;
@@ -97,6 +83,7 @@ function startGame() {
         incorrectAnimation(selectedCard);
         incorrectAnimation(holder);
       }
+      holder.removeClass("disabled");
       holder = null; //* after comparing the cards, holder need to be null to hold new card for the next move.
       if (movesCount == 16 || movesCount == 21) {
         //? condition of decrease number of stars.
@@ -108,14 +95,21 @@ function startGame() {
       }
       if (cardsRemained == 0) {
         //? condition for finishing the game.
-        alert(
-          `You Won!\nScore:\nMoves: ${movesCount}\nTime: ${timeDifference()}\nStars: ${starsCount}`
-        );
-        location.reload();
+        let message = `congratulation!\nScore:\nMoves: ${movesCount}\nTime: ${timer
+          .getTimeValues()
+          .toString()}\nStars: ${starsCount}\nTo restart please select Ok.`;
+        //? if user select okey it will restart overwise only stop the timer
+        if (window.confirm(message)) {
+          location.reload();
+        } else {
+          timer.stop();
+          $(".card").addClass('disabled');
+        }
       }
     } else {
       //? assign first card to be holded for the next card.
       holder = $(this);
+      holder.addClass('disabled');
     }
   });
 }
